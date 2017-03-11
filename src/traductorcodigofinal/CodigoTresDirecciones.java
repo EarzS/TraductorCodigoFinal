@@ -60,6 +60,59 @@ public class CodigoTresDirecciones {
  			System.out.println("[CodigoTresDirecciones.constructor()] Sintaxis invalida.");
  		}
 
- 		// 
+ 		// Tokeniza la cadena
+ 		String tmp = cadena.replace(","," ");
+ 		String[] tokens = tmp.split("\s");
+ 		// Asigna los elementos a la cadena
+ 		this.instruccion = tokens[0];
+ 		this.direccion1  = tokens[1];
+ 		this.direccion2  = tokens[2];
+ 		this.direccion3  = tokens[3];
     }
+
+    public void setInstruccion(String instruccion){
+    	this.instruccion = instruccion;
+    }
+
+    public String getInstruccion(){
+		return this.instruccion;
+	}
+
+	public void setDireccion1(String direccion1){
+    	this.direccion1 = direccion1;
+    }
+
+    public String getDireccion1(){
+		return this.direccion1;
+	}
+
+	public void setDireccion2(String direccion2){
+    	this.direccion2 = direccion2;
+    }
+
+    public String getDireccion2(){
+		return this.direccion2;
+	}
+
+	public void setDireccion3(String direccion3){
+    	this.direccion3 = direccion3;
+    }
+
+    public String getDireccion3(){
+		return this.direccion3;
+	}
+
+	/**
+	 * Retorna el codigo de tres direcciones en el formato:
+	 * INSTRUCCION DIRECCION1, DIRECCION2, DIRECCION3
+	 */
+	public String toString(){
+		return instruccion + " " + direccion1 + ", " + direccion2 + ", " + direccion3;
+	}
+
+	public static void main(String[] args) {
+		String prueba = "CARGAR_VALOR 15, null, 10000";
+		CodigoTresDirecciones codigo = new CodigoTresDirecciones(prueba);
+		System.out.println(codigo.toString());
+	}
 }
