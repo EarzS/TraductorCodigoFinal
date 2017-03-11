@@ -37,6 +37,7 @@ public class TraductorCodigoFinal {
     
     public static void escribir(String archivo,BufferedReader b){
         File f;
+        Traductor t;
         f = new File(archivo);
         
         try{
@@ -46,7 +47,7 @@ public class TraductorCodigoFinal {
            PrintWriter wr = new PrintWriter(bw);
           
            while((cadena = b.readLine())!=null) {
-                wr.write(cadena+"\n");
+                wr.write(t.traductor(cadena));
            }
 
            wr.close();
