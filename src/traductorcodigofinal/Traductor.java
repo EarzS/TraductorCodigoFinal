@@ -43,4 +43,20 @@ public class Traductor {
 
     	// Retorno la cadena final
     }
+
+    /**
+     * Lee la cadena y compara el primer token con algun registro existente
+     * en la base de datos de comandos.
+     */
+    public static String traductor2(String cadena){
+    	// Obtengo el codigo de tres direcciones.
+    	CodigoTresDirecciones codigoTD = new CodigoTresDirecciones(cadena);
+
+    	// Obtengo la traduccion a ensamblador
+    	List<CodigoEnsamblador> codigoE = CodigoEnsamblador.get(codigoTD);
+
+    	// Creo la lista de instrucciones en funcion del codigo ensamblador
+    	List<String> traduccion = new ArrayList<String>();
+    	
+    }
 }

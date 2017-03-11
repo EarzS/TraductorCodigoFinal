@@ -54,6 +54,12 @@ public class CodigoTresDirecciones {
      */
     public CodigoTresDirecciones(String cadena){
     	// Validar la expresion regular.
-    	
+    	Pattern p = Pattern.compile("(([A-Z]*_[A-Z]*)|([A-Z]*))\s([a-z]|[0-9])*,([a-z]|[0-9])*,([a-z]|[0-9])*");
+    	Matcher m = p.matcher(cadena);
+ 		if(!m.matches()){
+ 			System.out.println("[CodigoTresDirecciones.constructor()] Sintaxis invalida.");
+ 		}
+
+ 		// 
     }
 }
