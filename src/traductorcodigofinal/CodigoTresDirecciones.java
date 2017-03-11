@@ -54,15 +54,16 @@ public class CodigoTresDirecciones {
      */
     public CodigoTresDirecciones(String cadena){
     	// Validar la expresion regular.
-    	Pattern p = Pattern.compile("(([A-Z]*_[A-Z]*)|([A-Z]*))\s([a-z]|[0-9])*,([a-z]|[0-9])*,([a-z]|[0-9])*");
+    	Pattern p = Pattern.compile("(([A-Z]*_[A-Z]*)|([A-Z]*))\\s([a-z]|[0-9])*,(\\s)*([a-z]|[0-9])*,(\\s)*([a-z]|[0-9])*");
     	Matcher m = p.matcher(cadena);
  		if(!m.matches()){
  			System.out.println("[CodigoTresDirecciones.constructor()] Sintaxis invalida.");
  		}
 
  		// Tokeniza la cadena
- 		String tmp = cadena.replace(","," ");
- 		String[] tokens = tmp.split("\s");
+        String tmp = cadena.replaceAll("(,(\\s)*)|(,)", " ");
+ 		String[] tokens = tmp.split("\\s");
+ 		
  		// Asigna los elementos a la cadena
  		this.instruccion = tokens[0];
  		this.direccion1  = tokens[1];
@@ -108,11 +109,5 @@ public class CodigoTresDirecciones {
 	 */
 	public String toString(){
 		return instruccion + " " + direccion1 + ", " + direccion2 + ", " + direccion3;
-	}
-
-	public static void main(String[] args) {
-		String prueba = "CARGAR_VALOR 15, null, 10000";
-		CodigoTresDirecciones codigo = new CodigoTresDirecciones(prueba);
-		System.out.println(codigo.toString());
 	}
 }
