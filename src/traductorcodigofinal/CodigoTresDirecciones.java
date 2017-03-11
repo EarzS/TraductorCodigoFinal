@@ -5,6 +5,9 @@
  */
 package traductorcodigofinal;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Representacion del codigo de tres direcciones, el cual posee una etiqueta
  * identificadora, y tres direcciones.
