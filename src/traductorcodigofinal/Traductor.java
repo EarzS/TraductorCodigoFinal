@@ -5,28 +5,30 @@
  */
 package traductorcodigofinal;
 
+import java.util.List;
+
 /**
  * Modulo dedicado a traducir las cadenas de texto ingresadas por el lector
  * de archivos.
  * @author Hector
  */
 public class Traductor {
-
+    
     /**
      * Lee la cadena y compara el primer token con algun registro existente
      * en la base de datos de comandos.
      */
-    public static String traductor(String cadena){
+   /* public static String traductor(String cadena){
     	/* Todo - Validar la expresion regular de la cadena si es 
     	   codigo de tres direcciones. */
 
 		// Obtencion de los tokens de la cadena
-    	String[] tokens = cadena.split("\\s");
+    	//String[] tokens = cadena.split("\\s");
 
     	// Leer el primer token
-    	String primerToken = tokens[0];
+    	//String primerToken = tokens[0];
 		/* Acceso la base de datos de traducciones
-			y solicito que me retorne la cadena a construir */
+			y solicito que me retorne la cadena a construir
 		String cadenaTraduccion = traducciones.get(primerToken);
 		// En caso de no existir el token indico un error de sintaxis
 		if(cadenaTraduccion == null){
@@ -34,29 +36,33 @@ public class Traductor {
 			" no es una instruccion de codigo intermedio.");
 
 			return null;
-		}
-
+                } 
     	// Leer los demas tokens
     		// Verifico en funcion del primer token temporal el comportamiento de
     	 	// las variables
     		// En funcion a su comportamiento, construyo la sentencia
 
     	// Retorno la cadena final
-    }
+    }*/
 
     /**
      * Lee la cadena y compara el primer token con algun registro existente
      * en la base de datos de comandos.
      */
-    public static String traductor2(String cadena){
+    public static String traductor(String cadena,int contador){
     	// Obtengo el codigo de tres direcciones.
+ 
     	CodigoTresDirecciones codigoTD = new CodigoTresDirecciones(cadena);
 
+
+        CodigoEnsamblador codigoE = new CodigoEnsamblador(codigoTD);
+        System.out.println(codigoE.getCantidad());
+        return codigoE.toString();
     	// Obtengo la traduccion a ensamblador
-    	List<CodigoEnsamblador> codigoE = CodigoEnsamblador.get(codigoTD);
+    	//List<CodigoEnsamblador> codigoE = CodigoEnsamblador.get(codigoTD);
 
     	// Creo la lista de instrucciones en funcion del codigo ensamblador
-    	List<String> traduccion = new ArrayList<String>();
+    	//List<String> traduccion = new ArrayList<String>();
     	
     }
 }
