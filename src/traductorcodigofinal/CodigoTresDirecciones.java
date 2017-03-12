@@ -80,9 +80,9 @@ public class CodigoTresDirecciones {
 
     public String getInstruccion(){
 		return this.instruccion;
-	}
+    }
 
-	public void setDireccion1(String direccion1){
+    public void setDireccion1(String direccion1){
     	this.direccion1 = direccion1;
     }
 

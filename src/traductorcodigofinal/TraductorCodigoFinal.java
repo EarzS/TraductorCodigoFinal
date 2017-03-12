@@ -39,16 +39,19 @@ public class TraductorCodigoFinal {
         File f;
         Traductor t = new Traductor();
         f = new File(archivo);
+       
         int contador = 0;
         try{
            String cadena;
            FileWriter w = new FileWriter(f);
            BufferedWriter bw = new BufferedWriter(w);
            PrintWriter wr = new PrintWriter(bw);
-          
+
            while((cadena = b.readLine())!=null) {
+               System.out.println((int)f.length());
                 wr.write(t.traductor(cadena,contador));
            }
+           
 
            wr.close();
            bw.close();
