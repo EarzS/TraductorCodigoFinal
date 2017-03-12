@@ -42,9 +42,9 @@ public class CodigoEnsamblador {
         datos.put("IMPRIMIR_CADENA","WRSTR /"+linea.getDireccion1());
         datos.put("PONER_CADENA",linea.getDireccion3()+": DATA "+linea.getDireccion1());
         datos.put("FIN","HALT");  
-        
+       
+  
         String cadena = linea.getInstruccion();
-        System.out.println(datos.get(cadena));
         cadena_final = datos.get(cadena);
         
         if("CARGAR_DIRECCION".equals(cadena) || "CARGAR_VALOR".equals(cadena)){
@@ -62,7 +62,7 @@ public class CodigoEnsamblador {
                 || "PONER_CADENA".equals(cadena)|| "FIN".equals(cadena)){
             linea_ensamblador+=1;
         }
-
+       
     }
 
     @Override

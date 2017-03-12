@@ -44,11 +44,8 @@ public class CodigoTresDirecciones {
     /**
      * Constructor default.
      */
-    public CodigoTresDirecciones(){
-    	this.instruccion = "CARGAR_VALOR";
-    	this.direccion1  = "15";
-    	this.direccion2	 = "null";
-    	this.direccion3  = "10000";
+    private CodigoTresDirecciones(){
+
     }
 
     /**
@@ -57,10 +54,10 @@ public class CodigoTresDirecciones {
      */
     public CodigoTresDirecciones(String cadena){
     	// Validar la expresion regular.
-    	Pattern p = Pattern.compile("(([A-Z]*_[A-Z]*)|([A-Z]*))\\s([a-z]|[0-9])*,(\\s)*([a-z]|[0-9])*,(\\s)*([a-z]|[0-9])*");
+    	Pattern p = Pattern.compile("(([A-Z]*_[A-Z]*)|([A-Z]*))(\\s)*([a-z]|[0-9])*,(\\s)*([a-z]|[0-9])*,(\\s)*([a-z]|[0-9])*");
     	Matcher m = p.matcher(cadena);
  		if(!m.matches()){
- 			System.out.println("[CodigoTresDirecciones.constructor()] Sintaxis invalida.");
+ 			System.out.println("[CodigoTresDirecciones.constructor()] Sintaxis invalida."+cadena);
  		}
 
  		// Tokeniza la cadena
@@ -79,7 +76,7 @@ public class CodigoTresDirecciones {
     }
 
     public String getInstruccion(){
-		return this.instruccion;
+        return this.instruccion;
     }
 
     public void setDireccion1(String direccion1){
@@ -87,10 +84,10 @@ public class CodigoTresDirecciones {
     }
 
     public String getDireccion1(){
-		return this.direccion1;
-	}
+            return this.direccion1;
+    }
 
-	public void setDireccion2(String direccion2){
+    public void setDireccion2(String direccion2){
     	this.direccion2 = direccion2;
     }
 
@@ -98,19 +95,19 @@ public class CodigoTresDirecciones {
 		return this.direccion2;
 	}
 
-	public void setDireccion3(String direccion3){
+    public void setDireccion3(String direccion3){
     	this.direccion3 = direccion3;
     }
 
     public String getDireccion3(){
-		return this.direccion3;
-	}
+	return this.direccion3;
+    }
 
 	/**
 	 * Retorna el codigo de tres direcciones en el formato:
 	 * INSTRUCCION DIRECCION1, DIRECCION2, DIRECCION3
 	 */
-	public String toString(){
-		return instruccion + " " + direccion1 + ", " + direccion2 + ", " + direccion3;
-	}
+    public String toString(){
+            return instruccion + " " + direccion1 + ", " + direccion2 + ", " + direccion3;
+    }
 }

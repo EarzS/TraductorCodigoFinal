@@ -17,7 +17,7 @@ public class TraductorCodigoFinal {
 
     public static void main(String[] args){
         // TODO code application logic here
-            leer("C:\\Users\\Victor\\Desktop\\Codigo de tres direcciones.ci");
+            leer("C:\\Users\\Victor\\Documents\\NetBeansProjects\\TraductorCodigoFinal\\src\\inputs\\Codigo de tres direcciones.ci");
             
     }
     
@@ -27,7 +27,7 @@ public class TraductorCodigoFinal {
             String cadena;
             FileReader f = new FileReader(archivo);
             BufferedReader b = new BufferedReader(f);
-            escribir("C:\\Users\\Victor\\Desktop\\ens2001.ens",b);
+            escribir("C:\\Users\\Victor\\Documents\\NetBeansProjects\\TraductorCodigoFinal\\src\\traducciones\\ens2001.ens",b);
             b.close();
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -39,20 +39,22 @@ public class TraductorCodigoFinal {
         File f;
         Traductor t = new Traductor();
         f = new File(archivo);
-       
-        int contador = 0;
+        int c=0;
         try{
            String cadena;
            FileWriter w = new FileWriter(f);
            BufferedWriter bw = new BufferedWriter(w);
            PrintWriter wr = new PrintWriter(bw);
-
+            
            while((cadena = b.readLine())!=null) {
-               System.out.println((int)f.length());
-                wr.write(t.traductor(cadena,contador));
+               if(c==0){
+                   c++;
+                   wr.write(t.traductor(cadena));
+               }else{
+                   wr.write("\n"+t.traductor(cadena));
+               }     
            }
            
-
            wr.close();
            bw.close();
            

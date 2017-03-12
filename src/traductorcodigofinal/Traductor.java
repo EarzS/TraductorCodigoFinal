@@ -49,14 +49,13 @@ public class Traductor {
      * Lee la cadena y compara el primer token con algun registro existente
      * en la base de datos de comandos.
      */
-    public static String traductor(String cadena,int contador){
+    public static String traductor(String cadena){
     	// Obtengo el codigo de tres direcciones.
  
     	CodigoTresDirecciones codigoTD = new CodigoTresDirecciones(cadena);
 
-
         CodigoEnsamblador codigoE = new CodigoEnsamblador(codigoTD);
-        System.out.println(codigoE.getCantidad());
+        
         return codigoE.toString();
     	// Obtengo la traduccion a ensamblador
     	//List<CodigoEnsamblador> codigoE = CodigoEnsamblador.get(codigoTD);
