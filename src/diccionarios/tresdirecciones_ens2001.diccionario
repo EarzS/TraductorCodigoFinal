@@ -1,0 +1,210 @@
+; ------------- GLOSARIO ---------------------
+; %di = Direccion de memoria i (/10000)
+; %vi = Valor en la direccion i (#15)
+; %ln = Numero de linea de la primera sentencia más n (n=5 $5)
+; %si = Cadena ubicada en la direccion i
+; --------------- FORMATO ----------------------
+; El formato del diccionario va de la siguiente forma:
+; ; <Comentario 1>
+; ; .
+; ; <Comentario N>
+;
+; <INSTRUCCION> <Direccion1>,<Direccion2>,<Direccion3>
+; ---------------------------------------------------
+; <TRADUCCION 1>
+; .
+; <TRADUCCION N>
+;
+; --------------------------------------------
+
+; ------------- DICCIONARIO ------------------
+; Carga el contenido de una direccion de memoria
+; %d1 en una direccion %d3
+
+CARGAR_DIRECCION %d1, null, %d3
+-------------------------------
+MOVE /%d1, /%d3
+
+; Carga un valor %v1 cualquiera en una direccion
+; de memoria %d3
+
+CARGAR_VALOR %v1, null, %d3
+-------------------------------
+MOVE #%v1, /%d3
+
+; Suma el contenido de la direccion de memoria %d1
+; y %d2 y lo guarda en una direccion de resultado %d3
+
+SUMAR %d1, %d2, %d3
+------------------------------
+ADD /%d1, /%d2
+MOVE .A, /%d3
+
+; Resta el contenido de la direccion de memoria %d1
+; con %d2 y lo guarda en una direccion de resultado %d3
+
+RESTAR %d1, %d2, %d3
+------------------------------
+SUB /%d1, /%d2
+MOVE .A, /%d3
+
+; Multiplica el contenido de la direccion de memoria %d1
+; y %d2 y lo guarda en una direccion de resultado %d3
+
+MULTIPLICAR %d1, %d2, %d3
+------------------------------
+MUL /%d1, /%d2
+MOVE .A, /%d3
+
+; Divide el contenido de la direccion de memoria %d1
+; con %d2 y lo guarda en una direccion de resultado %d3
+
+DIVIDIR %d1, %d2, %d3
+------------------------------
+DIV /%d1, /%d2
+MOVE .A, /%d3
+
+; Modula el contenido de la direccion de memoria %d1
+; con %d2 y lo guarda en una direccion de resultado %d3
+
+MODULO %d1, %d2, %d3
+------------------------------
+MOD /%d1, /%d2
+MOVE .A, /%d3
+
+; Opera logicamente el contenido de la direccion de memoria
+; %d1 y %d2, guardando el resultado en %d3
+
+OR %d1, %d2, %d3
+------------------------------
+OR /%d1, /%d2
+MOVE .A, /%d3
+
+; Opera logicamente el contenido de la direccion de memoria
+; %d1 y %d2, guardando el resultado en %d3
+
+AND %d1, %d2, %d3
+------------------------------
+AND /%d1, /%d2
+MOVE .A, /%d3
+
+; Devuelve el NOT del contenido de la direccion de memoria %d1
+; en %d3
+
+NOT %d1, null, %d3
+------------------------------
+CMP #1, /%d1
+BZ $%l5
+MOVE #1, /%d3
+BR $%l3
+MOVE #0, /%d3
+
+; Devuelve 1 si la direccion %d1 es mayor que la direccion %d2
+; y guarda el resultado en %d3.
+
+MAYOR %d1, %d2, %d3
+------------------------------
+CMP /%d2, /%d1
+BN $%l5
+MOVE #0, /%d3
+BR $%l3
+MOVE #1, /%d3
+
+; Devuelve 1 si la direccion %d1 es menor que la direccion %d2
+; y guarda el resultado en %d3.
+
+MENOR %d1, %d2, %d3
+------------------------------
+CMP /%d1, /%d2
+BN $%l5
+MOVE #0, /%d3
+BR $%l3
+MOVE #1, /%d3
+
+; Devuelve 1 si la direccion %d1 es mayor o igual que la direccion %d2
+; y guarda el resultado en %d3.
+
+MAYORIGUAL %d1, %d2, %d3
+------------------------------
+CMP /%d1, /%d2
+BN $%l5
+MOVE #1, /%d3
+BR $%l3
+MOVE #0, /%d3
+
+; Devuelve 1 si la direccion %d1 es menor o igual que la direccion %d2
+; y guarda el resultado en %d3.
+
+MENORIGUAL %d1, %d2, %d3
+------------------------------
+CMP /%d2, /%d1
+BN $%l5
+MOVE #1, /%d3
+BR $%l3
+MOVE #0, /%d3
+
+; Devuelve 1 si el contenido de la direccion %d1 es igual que la direccion %d2
+; y guarda el resultado en %d3.
+
+IGUAL %d1, %d2, %d3
+------------------------------
+CMP /%d2, /%d1
+BZ $%l5
+MOVE #0, /%d3
+BR $%l3
+MOVE #1, /%d3
+
+; Devuelve 1 si el contenido de la direccion %d1 es distinta que la direccion %d2
+; y guarda el resultado en %d3.
+
+DISTINTO %d1, %d2, %d3
+------------------------------
+CMP /%d2, /%d1
+BZ $%l5
+MOVE #1, /%d3
+BR $%l3
+MOVE #0, /%d3
+
+; Crea una etiqueta con el nombre %s3
+
+DISTINTO null, null, %s3
+------------------------------
+%s3: NOP
+
+; Salta a la etiqueta %s3 si el contenido de %d1 es 0
+
+SALTAR_CONDICION %d1, null, %s3
+-----------------------------------
+CMP #0, /%d1
+BZ /%s3
+
+; Salta a la etiqueta con el nombre %s3
+
+SALTAR_ETIQUETA null, null, %s3
+------------------------------
+BR /%s3
+
+; Imprime un entero de la direccion %d1
+
+IMPRIMIR_ENTERO %d1, null, null
+-----------------------------------
+WRINT /%d1
+
+; Imprime una cadena de la etiqueta %s1
+
+IMPRIMIR_ENTERO %d1, null, null
+-----------------------------------
+WRSTR /%s1
+
+; Crea una cadena con el nombre %s3, y le agrega la cadena %s1
+; %s1 debe de estar entre comillas
+
+PONER_CADENA %s1, null, %s3
+-----------------------------------
+%s3: DATA %s1
+
+; Indica el fin del condigo ensamblador
+
+FIN null,null,null
+-----------------------------------
+HALT
